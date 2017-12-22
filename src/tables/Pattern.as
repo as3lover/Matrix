@@ -4,15 +4,19 @@
  */
 package tables
 {
+import uitiliti.PatternUtils;
+
 public class Pattern
 {
     private var _matrix:Vector.<Vector.<int>>;
     private var _rows:uint;
     private var _cols:uint;
-    private var _points:Vector.<Array>;
-    private var _firstRowPoints:Vector.<Array>;
-
-    //var matrix:Vector.<Vector.<int>> = new <Vector.<int>>[new <int>[1,2,3,4], new <int>[1,2,3,4]];
+    private var _points:Vector.<Cell>;
+    private var _firstRowPoints:Vector.<Cell>;
+    private var _id:uint;
+    private static var _lastId:uint = 0;
+    private var _name:String;
+    private var _rotation:int;
 
     public static function random(numOfRows:uint, numOfCols:uint, rangeFrom:int = 0, rangeTo:int = 9):Pattern
     {
@@ -27,22 +31,26 @@ public class Pattern
             {
                 var val:int = rangeFrom + int(Math.random() * (range+0.99999));
                 row.push(val);
-                /*
-                if(Math.random() > 0.89)
-                    row.push(1);
-                else
-                    row.push(0)
-                 */
             }
 
             matrix.push(row);
         }
 
-        return new Pattern(0,0,matrix);
+        return byMatrix(matrix);
     }
 
-    public function Pattern(numOfRows:uint, numOfCols:uint, matrix:Vector.<Vector.<int>> = null)
+    public static function byMatrix(matrix:Vector.<Vector.<int>>, name:String = null, rotation:int = 0):Pattern
     {
+        return new Pattern(0,0,matrix, name, rotation);
+    }
+
+    public function Pattern(numOfRows:uint, numOfCols:uint, matrix:Vector.<Vector.<int>> = null, name:String = null, rotation:int = 0)
+    {
+        _lastId++;
+        _id = _lastId;
+        _name = name;
+        _rotation = rotation;
+
         if(matrix != null && matrix.length && matrix[0].length)
         {
             _matrix = matrix;
@@ -65,23 +73,18 @@ public class Pattern
 
         _rows = numOfRows;
         _cols = numOfCols;
+
+        //temp
+        if(_cols = 999999)
+        {
+            if(setRow == null || duplicate == null || setCell == null || firstRowPoints == null || getCell == null)
+                    trace("Null");
+        }
     }
 
     public function print():void
     {
-        var line1:String = "";
-        var line2:String = "";
-        for (var i:int = 0; i<cols*2; i++)
-        {
-            line1 += "=";
-            line2 += "-"
-        }
-        trace(line1);
-
-        for(i = 0; i<rows; i++)
-            trace(_matrix[i]);
-
-        trace(line2);
+        PatternUtils.tracePattern(this);
     }
 
     public function get rows():uint
@@ -96,15 +99,26 @@ public class Pattern
 
     public function setRow(rowVector:Vector.<int>, row:uint):void
     {
-        if(errorRow(row) || errorLength(rowVector))
+        if(nullRow(rowVector) || errorRow(row) || errorLength(rowVector))
             return;
 
         //_matrix[row] = rowVector;
         setSubRow(rowVector, row, 0, cols, 0);
     }
 
+    private static function nullRow(row:Vector.<int>):Boolean
+    {
+        if(row == null)
+        {
+            trace("Error: nullRow");
+            return true;
+        }
+
+        return false;
+    }
+
     /*
-    یک ردیف را در ماتریس با ردیف جدید جایگزین میکند
+       یک ردیف را در ماتریس با ردیف جدید جایگزین میکند
     row نشان دهنده اندیس ردیف است
     col نشان دهنده اندیس ستونی از ماتریس است که جایگذاری از آن نقطه شروع میشود
     Length مشخص کننده حداکثر تعداد آیتمی است که از ردیف جدید در ماتریس جایگذاری شود که در حالت صفر یعنی ماکسیمم
@@ -144,6 +158,9 @@ public class Pattern
         _matrix[row][col] = value;
         _points = null;
         _firstRowPoints = null;
+
+        if(_matrix[row][col] != value)
+                trace('can not update')
     }
 
     private function errorRow(row:uint):Boolean
@@ -189,20 +206,7 @@ public class Pattern
 
     public function copyMatrix():Vector.<Vector.<int>>
     {
-        var matrix:Vector.<Vector.<int>> = new Vector.<Vector.<int>>();
-
-        for(var r:int = 0; r< rows; r++)
-        {
-            var row:Vector.<int> = new Vector.<int>(cols);
-            matrix.push(row);
-
-            for(var c:int = 0; c < cols; c++)
-            {
-                matrix[r][c] = _matrix[r][c]
-            }
-        }
-
-        return matrix;
+        return PatternUtils.copyMatrix(_matrix);
     }
 
     public function setCell(cell:Cell, value:int = -9876543210):void
@@ -215,7 +219,7 @@ public class Pattern
 
     private function calculatePoints():void
     {
-        var points:Vector.<Array> = new Vector.<Array>();
+        var points:Vector.<Cell> = new Vector.<Cell>();
 
         for(var r:int = 0; r<rows; r++)
         {
@@ -223,23 +227,23 @@ public class Pattern
             {
                 var val:int = _matrix[r][c];
                 if(val != 0)
-                    points.push([r,c])
+                    points.push(new Cell(val, r, c));
             }
         }
 
         _points = points;
     }
 
-    public function get firstRowPoints():Vector.<Array>
+    public function get firstRowPoints():Vector.<Cell>
     {
         if(_firstRowPoints == null)
         {
-            _firstRowPoints = new Vector.<Array>();
-            var list:Vector.<Array> = points;
+            _firstRowPoints = new Vector.<Cell>();
+            var list:Vector.<Cell> = points;
 
             for(var i:int=0; i<cols; i++)
             {
-                if(list[i][0] == 0)
+                if(list[i].col == 0)
                         _firstRowPoints.push(list[i])
             }
         }
@@ -248,7 +252,7 @@ public class Pattern
     }
 
 
-    public function get points():Vector.<Array>
+    public function get points():Vector.<Cell>
     {
         if(_points == null)
                 calculatePoints();
@@ -263,130 +267,50 @@ public class Pattern
 
     public function trim():Boolean
     {
-        _matrix = trimUp(_matrix);
-        _matrix = trimDown(_matrix);
-        _matrix = trimRight(_matrix);
-        _matrix = trimLeft(_matrix);
+        return PatternUtils.trim(this);
+    }
 
-        var r = rows;
-        var c = cols
+    public function get id():uint
+    {
+        return _id;
+    }
+
+    public function updateMatrix(matrix:Vector.<Vector.<int>>):Boolean
+    {
+        if(!matrix || !matrix.length || !matrix[0].length)
+                return false;
+
+        _matrix = matrix;
         _rows = _matrix.length;
-        if(_rows)
-            _cols = _matrix[0].length;
-        else
-            _cols = 0;
+        _cols = _matrix[0].length;
+        _points = null;
 
-        if(r != rows || c != cols)
-                return true;
-        else
-                return false
+        return true;
     }
 
-    private function trimUp(m:Vector.<Vector.<int>>):Vector.<Vector.<int>>
+    public function setName(name:String):void
     {
-        if(m.length == 0)
-            return m;
-
-        for(var i:int = 0; i<m[0].length; i++)
-        {
-            if(m[0][i] != 0)
-                return m;
-            else if(i == m[0].length -1)
-            {
-                var m2 = new Vector.<Vector.<int>>();
-                for(var r:int = 1; r<m.length; r++)
-                {
-                    m2.push(m[r])
-                }
-                return trimUp(m2)
-            }
-        }
-
-        return m;
+        _name = name;
     }
 
-    private function trimDown(m:Vector.<Vector.<int>>):Vector.<Vector.<int>>
+    public function get name():String
     {
-        if(m.length == 0)
-            return m;
-
-        for(var i:int = 0; i<m[0].length; i++)
-        {
-            if(m[m.length-1][i] != 0)
-                return m;
-            else if(i == m[0].length -1)
-            {
-                var m2 = new Vector.<Vector.<int>>();
-                for(var r:int = 0; r<m.length-1; r++)
-                {
-                    m2.push(m[r])
-                }
-                return trimDown(m2)
-            }
-        }
-
-        return m;
+        return _name;
     }
 
-    private function trimLeft(m:Vector.<Vector.<int>>):Vector.<Vector.<int>>
+    public function get rotation():int
     {
-        if(m.length == 0)
-            return m;
-        if(m[0].length == 0)
-            return m;
-
-        for(var i:int = 0; i<m.length; i++)
-        {
-            if(m[i][0] != 0)
-                return m;
-            else if(i == m.length -1)
-            {
-                var m2 = new Vector.<Vector.<int>>();
-                for(var r:int = 0; r<m.length; r++)
-                {
-                    var row:Vector.<int> = new Vector.<int>();
-                    for(var c:int = 1; c<m[0].length; c++)
-                    {
-                        row.push(m[r][c]);
-                    }
-                    m2.push(row)
-                }
-                return trimLeft(m2)
-            }
-        }
-
-        return m;
+        return _rotation;
     }
 
-    private function trimRight(m:Vector.<Vector.<int>>):Vector.<Vector.<int>>
+    public function getCell(r:int, c:int):Cell
     {
-        if(m.length == 0)
-            return m;
-        if(m[0].length == 0)
-            return m;
-
-        for(var i:int = 0; i<m.length; i++)
-        {
-            if(m[i][m[0].length-1] != 0)
-                return m;
-            else if(i == m.length -1)
-            {
-                var m2 = new Vector.<Vector.<int>>();
-                for(var r:int = 0; r<m.length; r++)
-                {
-                    var row:Vector.<int> = new Vector.<int>();
-                    for(var c:int = 0; c<m[0].length-1; c++)
-                    {
-                        row.push(m[r][c]);
-                    }
-                    m2.push(row)
-                }
-                return trimRight(m2);
-            }
-        }
-
-        return m;
+        return new Cell(getValue(r,c), r, c)
     }
 
+    public function getValue(r:int, c:int):int
+    {
+        return _matrix[r][c]
+    }
 }
 }

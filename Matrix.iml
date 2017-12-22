@@ -4,6 +4,14 @@
     <configurations>
       <configuration name="Matrix" target-platform="Mobile" pure-as="true" main-class="Main" output-file="Main.swf" output-folder="$MODULE_DIR$/out/production/Matrix">
         <dependencies>
+          <entries>
+            <entry library-id="4fc3f60c-52fd-4436-adb7-8000f3d50bca">
+              <dependency linkage="Merged" />
+            </entry>
+            <entry library-id="9bb9e28f-a52a-4307-8a85-7af928aa62b0">
+              <dependency linkage="Merged" />
+            </entry>
+          </entries>
           <sdk name="Adobe AIR SDK 26.0.0.118 (1)" />
         </dependencies>
         <compiler-options />
@@ -21,5 +29,25 @@
     </content>
     <orderEntry type="jdk" jdkName="Adobe AIR SDK 26.0.0.118 (1)" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="4fc3f60c-52fd-4436-adb7-8000f3d50bca" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../GreenSock-AS3/src" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="9bb9e28f-a52a-4307-8a85-7af928aa62b0" />
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../Hi-ReS-Stats/src" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
