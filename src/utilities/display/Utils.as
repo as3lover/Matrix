@@ -1,9 +1,9 @@
-package uitiliti
+package utilities
 {
 
 public class Utils
 {
-    public static function drawRect(obj:Object, x:int, y:int, width:int, height:int, color:int = 0x333333, lineWidth:Number = 0, lineColor:uint = 0x0, backAlpha:Number = 1, lineAlpha:Number = 1):void
+    public static function drawRect(obj:Object, x:int, y:int, width:int, height:int, color:int = 0x333333, lineWidth:Number = 0, lineColor:int = 0x0, backAlpha:Number = 1, lineAlpha:Number = 1):void
     {
         //var obj:Sprite = obj as Sprite;
 
