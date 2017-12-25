@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c93e6d9a-e85f-4e1e-98cf-bf4dd309b19d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Config.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uitiliti/PatternUtils.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/view/Candy.as" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/view/Table.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Cell.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Matrix.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/MatrixVector.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Model/Pattern.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utilities/pattern/Compare.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utilities/pattern/Create.as" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utilities/pattern/Trim.as" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tables/Cell.as" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tables/Pattern.as" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore.txt" afterPath="$PROJECT_DIR$/.gitignore.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Matrix.iml" afterPath="$PROJECT_DIR$/Matrix.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.as" afterPath="$PROJECT_DIR$/src/Main.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tables/Pattern.as" afterPath="$PROJECT_DIR$/src/tables/Pattern.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/uitiliti/Utils.as" afterPath="$PROJECT_DIR$/src/uitiliti/Utils.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Candy.as" afterPath="$PROJECT_DIR$/src/view/Candy.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/Table.as" afterPath="$PROJECT_DIR$/src/view/Table.as" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/uitiliti/PatternUtils.as" afterPath="$PROJECT_DIR$/src/utilities/pattern/PatternUtils.as" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/uitiliti/Utils.as" afterPath="$PROJECT_DIR$/src/utilities/display/Utils.as" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,10 +32,10 @@
       <file leaf-file-name="Main.as" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-259">
-              <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            <state relative-caret-position="153">
+              <caret line="68" column="39" lean-forward="false" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
               <folding>
-                <element signature="e#11#39#0" expanded="true" />
+                <element signature="e#11#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -37,8 +44,8 @@
       <file leaf-file-name="Table.as" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/Table.as">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-238">
-              <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+            <state relative-caret-position="225">
+              <caret line="244" column="24" lean-forward="false" selection-start-line="244" selection-start-column="24" selection-end-line="244" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -55,17 +62,43 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>uint</find>
-      <find>calc</find>
-      <find>full</find>
+      <find>Pattern</find>
+      <find>new Cell</find>
+      <find>random</find>
+      <find>_cols =</find>
+      <find>_rows =</find>
+      <find>setTimeout</find>
+      <find>tra</find>
+      <find>poo</find>
+      <find>vector2D</find>
+      <find>dispos</find>
+      <find>from</find>
+      <find>fr</find>
+      <find>fromPool</find>
+      <find>ftom</find>
+      <find>upd</find>
       <find>trace</find>
-      <find>print</find>
-      <find>سه تا</find>
-      <find>سه تایی</find>
-      <find>error</find>
+      <find>updateMatrix</find>
+      <find>get</find>
+      <find>get vector</find>
+      <find>_vector</find>
+      <find>set ve</find>
+      <find>time</find>
+      <find>uint</find>
+      <find>_points =</find>
+      <find>= null</find>
+      <find>get patt</find>
+      <find>creating</find>
+      <find>falsemo</find>
+      <find>remove</find>
+      <find>click</find>
     </findStrings>
     <replaceStrings>
       <replace>//trace</replace>
+      <replace>Cell.fromPool</replace>
+      <replace>patternss</replace>
+      <replace>int</replace>
+      <replace>vec</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -83,12 +116,27 @@
         <option value="$PROJECT_DIR$/src/utils/Utils.as" />
         <option value="$PROJECT_DIR$/src/matrix/Pattern.as" />
         <option value="$PROJECT_DIR$/src/pattern/Cell.as" />
-        <option value="$PROJECT_DIR$/src/tables/Cell.as" />
         <option value="$PROJECT_DIR$/src/tables/Matrix.as" />
         <option value="$PROJECT_DIR$/src/Model/Config.as" />
         <option value="$PROJECT_DIR$/src/uitiliti/Utils.as" />
-        <option value="$PROJECT_DIR$/src/tables/Pattern.as" />
         <option value="$PROJECT_DIR$/src/uitiliti/PatternUtils.as" />
+        <option value="$PROJECT_DIR$/src/utilities/PatternUtils.as" />
+        <option value="$PROJECT_DIR$/src/tables/cellule.as" />
+        <option value="$PROJECT_DIR$/src/tables/Celll.as" />
+        <option value="$PROJECT_DIR$/src/tables/patternss.as" />
+        <option value="$PROJECT_DIR$/src/utilities/pattern/Trim.as" />
+        <option value="$PROJECT_DIR$/src/utilities/Utils.as" />
+        <option value="$PROJECT_DIR$/src/utilities/pattern/MatrixVector.as" />
+        <option value="$PROJECT_DIR$/src/Model/Matrix.as" />
+        <option value="$PROJECT_DIR$/src/tables/Cell.as" />
+        <option value="$PROJECT_DIR$/src/utilities/pattern/Compare.as" />
+        <option value="$PROJECT_DIR$/src/tables/Pattern.as" />
+        <option value="$PROJECT_DIR$/src/Model/MatrixVector.as" />
+        <option value="$PROJECT_DIR$/src/utilities/pattern/PatternUtils.as" />
+        <option value="$PROJECT_DIR$/src/utilities/pattern/Create.as" />
+        <option value="$PROJECT_DIR$/src/utilities/display/Utils.as" />
+        <option value="$PROJECT_DIR$/src/Model/Pattern.as" />
+        <option value="$PROJECT_DIR$/src/Model/Cell.as" />
         <option value="$PROJECT_DIR$/src/view/Candy.as" />
         <option value="$PROJECT_DIR$/src/view/Table.as" />
         <option value="$PROJECT_DIR$/src/Main.as" />
@@ -101,7 +149,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-7" />
     <option name="y" value="5" />
     <option name="width" value="1692" />
@@ -135,37 +183,13 @@
               <item name="Matrix" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Matrix" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Matrix" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Matrix" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Matrix" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="tables" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Matrix" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Matrix" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="uitiliti" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Matrix" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Matrix" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -180,14 +204,20 @@
     <property name="flex.preferred.android.device.id" value="4b1348418868824e" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Intellij\Matrix\src\tables" />
+    </key>
     <key name="CreateActionScriptClassDialog.DESTINATION_PACKAGE_RECENT_KEY">
-      <recent name="view" />
-      <recent name="Model" />
-      <recent name="uitiliti" />
+      <recent name="utilities.pattern" />
       <recent name="tables" />
-      <recent name="pattern" />
+      <recent name="Model" />
+      <recent name="view" />
+      <recent name="uitiliti" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Intellij\Matrix\src\utilities\display" />
+      <recent name="D:\Intellij\Matrix\src\Model" />
+      <recent name="D:\Intellij\Matrix\src\utilities\pattern" />
       <recent name="C:\Users\SalmanPC2\IdeaProjects\Matrix\src\tables" />
     </key>
   </component>
@@ -331,15 +361,16 @@
       <option name="presentableId" value="Default" />
       <updated>1513709428103</updated>
       <workItem from="1513709431316" duration="41627000" />
-      <workItem from="1513899632127" duration="7923000" />
+      <workItem from="1513899632127" duration="8284000" />
+      <workItem from="1514068894107" duration="42271000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49550000" />
+    <option name="totallyTimeSpent" value="92182000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -350,25 +381,25 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39978093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39978093" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32968238" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -408,17 +439,37 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Main.as">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#11#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Table.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="31" lean-forward="false" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding>
+            <element signature="e#15#35#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.as">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="33" column="52" lean-forward="false" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
           <folding>
-            <element signature="e#11#39#0" expanded="true" />
+            <element signature="e#11#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -428,27 +479,27 @@
         <state relative-caret-position="136">
           <caret line="10" column="75" lean-forward="false" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
           <folding>
-            <element signature="e#15#46#0" expanded="true" />
+            <element signature="e#15#46#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uitiliti/PatternUtils.as">
+    <entry file="file://$PROJECT_DIR$/src/utilities/pattern/PatternUtils.as">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3944">
           <caret line="233" column="27" lean-forward="false" selection-start-line="233" selection-start-column="27" selection-end-line="233" selection-end-column="27" />
           <folding>
-            <element signature="e#19#38#0" expanded="true" />
+            <element signature="e#28#46#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tables/Pattern.as">
+    <entry file="file://$PROJECT_DIR$/src/Model/Pattern.as">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3621">
           <caret line="216" column="21" lean-forward="false" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -465,88 +516,161 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1751">
           <caret line="106" column="13" lean-forward="true" selection-start-line="106" selection-start-column="13" selection-end-line="106" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#15#35#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pattern/Cell.as" />
     <entry file="file://$PROJECT_DIR$/src/tables/Matrix.as" />
-    <entry file="file://$PROJECT_DIR$/src/uitiliti/Utils.as">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/ECMAScript.js2">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="35" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="35" />
+        <state relative-caret-position="174">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tables/Cellule.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="10" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tables/Celll.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="15" lean-forward="true" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/Adobe AIR SDK 26.0.0.118/frameworks/libs/air/airglobal.swc!/library.swf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="3273" column="35" lean-forward="false" selection-start-line="3273" selection-start-column="35" selection-end-line="3273" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Model/Config.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/ECMAScript.js2">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/tables/Cell.as">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="20" lean-forward="false" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/tables/Pattern.as">
+    <entry file="file://$PROJECT_DIR$/src/tables/patternss.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3791">
-          <caret line="229" column="37" lean-forward="true" selection-start-line="229" selection-start-column="37" selection-end-line="229" selection-end-column="37" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utilities/pattern/Trim.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utilities/pattern/PatternUtils.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utilities/display/Utils.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="139" lean-forward="false" selection-start-line="5" selection-start-column="139" selection-end-line="5" selection-end-column="139" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utilities/pattern/Compare.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1853">
+          <caret line="109" column="36" lean-forward="true" selection-start-line="109" selection-start-column="36" selection-end-line="109" selection-end-column="36" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#28#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/uitiliti/PatternUtils.as">
+    <entry file="file://$PROJECT_DIR$/src/utilities/pattern/Create.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2104">
-          <caret line="259" column="0" lean-forward="false" selection-start-line="259" selection-start-column="0" selection-end-line="259" selection-end-column="0" />
+        <state relative-caret-position="149">
+          <caret line="35" column="16" lean-forward="false" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Pattern.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="94" column="0" lean-forward="true" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
           <folding>
-            <element signature="e#19#38#0" expanded="true" />
+            <element signature="e#163#189#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Cell.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="21" lean-forward="false" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Candy.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="170">
+          <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/MatrixVector.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Matrix.as">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="122" column="27" lean-forward="false" selection-start-line="122" selection-start-column="27" selection-end-line="122" selection-end-column="27" />
           <folding>
-            <element signature="e#15#46#0" expanded="true" />
+            <element signature="e#16#42#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Table.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+        <state relative-caret-position="225">
+          <caret line="244" column="24" lean-forward="false" selection-start-line="244" selection-start-column="24" selection-end-line="244" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.as">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-259">
-          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        <state relative-caret-position="153">
+          <caret line="68" column="39" lean-forward="false" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
           <folding>
-            <element signature="e#11#39#0" expanded="true" />
+            <element signature="e#11#31#0" expanded="true" />
           </folding>
         </state>
       </provider>

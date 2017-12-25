@@ -1,9 +1,9 @@
-package tables
+package Model
 {
 public class Cell
 {
     private static var _pool:Vector.<Cell> = new <Cell>[];
-    private static var len:int = 0;
+    private static var _len:int = 0;
     private static var _fromPool:Boolean = false;
 
     public var row:int;
@@ -24,19 +24,19 @@ public class Cell
 
     public function dispose():void
     {
-        _pool[len] = this;
-        len++;
+        _pool[_len] = this;
+        _len++;
     }
 
     public static function fromPool(row:int = 0, col:int = 0, value:int = 0):Cell
     {
-        if(len)
+        if(_len)
         {
-            len --;
-            _pool[len].row = row;
-            _pool[len].col = col;
-            _pool[len].value = value;
-            return _pool[len];
+            _len --;
+            _pool[_len].row = row;
+            _pool[_len].col = col;
+            _pool[_len].value = value;
+            return _pool[_len];
         }
         else
         {

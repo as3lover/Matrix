@@ -1,4 +1,4 @@
-package utilities
+package utilities.display
 {
 
 public class Utils

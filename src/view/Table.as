@@ -1,82 +1,95 @@
 package view
 {
 import Model.Config;
-
-import com.greensock.TweenLite;
+import Model.Matrix;
 
 import flash.display.Sprite;
 import flash.utils.clearTimeout;
+import flash.utils.getTimer;
 import flash.utils.setTimeout;
 
-import tables.Cell;
-import tables.Pattern;
-import uitiliti.PatternUtils;
+import Model.Cell;
+import Model.Pattern;
+import utilities.pattern.PatternUtils;
 
 public class Table extends Sprite
 {
-    private var _pattern:Pattern;
-    private var objs:Vector.<Vector.<Candy>>;
-    public static const colors:Vector.<uint> = new <uint>[0xff0000, 0xfff600, 0x00c0ff, 0x00ff1e, 0x4800ff, 0xf08aff, 0x3c241b];
+    public static const colors:Vector.<int> = new <int>[0xff0000, 0xfff600, 0x00c0ff, 0x00ff1e, 0x4800ff, 0xf08aff, 0x3c241b];
     public static const colorNum:int = colors.length;
-    private var moving:Boolean;
-    private var timeOut:uint;
 
-    public function Table()
+    private var _pattern:Matrix;
+    private var _objList:Vector.<Vector.<Candy>>;
+    private var moving:Boolean;
+    private var _timeOut:int;
+    private var _creating:Boolean;
+    private var _patternList:Vector.<Pattern>;
+    private var _rows:int;
+    private var _cols:int;
+
+    public function Table(patternList:Vector.<Pattern>)
     {
+        super();
+
+        _patternList = patternList
     }
 
-    public function start(pattern:Pattern)
+    public function start(tablePattern:Matrix):void
     {
-
-        if(moving == true)
+        if(_creating)
         {
-            clearTimeout(timeOut);
-            timeOut = setTimeout(start, 10, pattern)
+            return;
+        }
+        else if(moving)
+        {
+            clearTimeout(_timeOut);
+            _timeOut = setTimeout(start, 10, tablePattern);
+            return;
         }
 
         moving = true;
 
-        if(objs)
+        _rows = tablePattern.rows;
+        _cols = tablePattern.cols;
+
+        if(_objList)
         {
-            var rows:int = this.pattern.rows;
-            var cols:int = this.pattern.cols;
-
-            trace(rows, cols);
-
-
-            for(var r:int=0; r<rows; r++)
+            for(var r:int=0; r < _rows; r++)
             {
-                for(var c:int=0; c<cols; c++)
+                for(var c:int=0; c < _cols; c++)
                 {
-                    var object = obj(r,c);
+                    var object:Candy = obj(r,c);
                     if(object)
                     {
-                        var time:Number = (r*cols + c)/900;
-                        trace(time)
+                        var time:Number = (r * _cols + c)/900;
                         object.hide({delay:time});
                     }
 
                 }
             }
 
-            clearTimeout(timeOut)
-            timeOut = setTimeout(create, (time+1)*1000, pattern)
+            _pattern.dispose();
+
+            _creating = true;
+            clearTimeout(_timeOut);
+            _timeOut = setTimeout(create, (time+1)*1000, tablePattern)
 
         }
         else
         {
-            clearTimeout(timeOut);
-            timeOut = setTimeout(create, 0, pattern)
+            _creating = true;
+
+            clearTimeout(_timeOut);
+            _timeOut = setTimeout(create, 0, tablePattern)
         }
     }
 
-    private function create(pattern:Pattern):void
+    private function create(matrix:Matrix):void
     {
-        pattern.print();
+        matrix.print();
 
         x = y = 25;
 
-        _pattern = pattern;
+        _pattern = matrix;
 
         while(numChildren)
             removeChildAt(0);
@@ -87,9 +100,9 @@ public class Table extends Sprite
         var w:int = Config.CELL_WIDTH;
         var h:int = Config.CELL_HEIGHT;
 
-        for(var r:int=0; r<pattern.rows; r++)
+        for(var r:int=0; r<matrix.rows; r++)
         {
-            for(var c:int=0; c<pattern.cols; c++)
+            for(var c:int=0; c<matrix.cols; c++)
             {
                 graphics.drawRect(-w/2 + c*w, -h/2 + r*h, w, h);
             }
@@ -105,18 +118,18 @@ public class Table extends Sprite
         var rows:int =  pattern.rows;
         var cols:int =  pattern.cols;
 
-        objs = new <Vector.<Candy>>[];
+        _objList = new <Vector.<Candy>>[];
 
         for(var r:int=0; r<rows; r++)
         {
             var row:Vector.<Candy>= new Vector.<Candy>();
-            objs.push(row);
+            _objList.push(row);
             for(var c:int=0; c<cols; c++)
             {
                 var value:int = pattern.getValue(r,c);
                 if(value > 0)
                 {
-                    var obj:Candy = new Candy(w,h,getColor(value-1));
+                    var obj:Candy = Candy.fromPool(w,h,getColor(value-1));
                     obj.x = c * w;
                     obj.y = r * h;
                     row.push(obj);
@@ -129,10 +142,23 @@ public class Table extends Sprite
             }
         }
 
-        moving = false;
+        setTimeout(falseMoving, 1000)
     }
 
-    private static function getColor(index:int):uint
+    private function falseMoving():void
+    {
+        moving = false;
+        _creating = false;
+
+        if(!search(false))
+        {
+            var pattern:Pattern = Pattern.randomValue(_rows, _cols, 0, 6);
+            start(pattern);
+            return;
+        }
+    }
+
+    private static function getColor(index:int):int
     {
         if(index >= colorNum || index < 0)
         {
@@ -143,61 +169,107 @@ public class Table extends Sprite
         return colors[index]
     }
 
-    public function get pattern():Pattern
+    public function get pattern():Matrix
     {
         return _pattern;
     }
 
-    public function exist(pat:Pattern):Boolean
+    public function exist(pat:Pattern, remove:Boolean):Boolean
     {
-        var table:Pattern = this.pattern;
-
-        var place:Object = PatternUtils.searchPattern(table, pat);
+        var place:Object = PatternUtils.searchPatternInTable(this, pat);
 
         if(place)
         {
-            trace(place.row, place.col, pat.rotation, pat.name);
-
-            var points:Vector.<Cell> = pat.points;
-            var len:int = points.length;
-
-            for(var i:int=0; i<len; i++)
-            {
-                var r:uint = place.row + points[i].row;
-                var c:uint = place.col + points[i].col;
-                table.setValue(0, r, c);
-                if(table.getValue(r,c) != 0)
-                        trace("Error", r, c);
-
-                var obj:Candy = this.obj(r,c);
-                if(obj)
-                {
-                    this.objs[r][c] = null;
-                    obj.hide();
-                }
-                else
-                {
-                    trace("Error: No obj")
-                }
-            }
-
-           // _pattern.print()
-
+            if(remove)
+                this.remove(place, pat);
             return true;
         }
 
         return false
     }
 
-    private function obj(row:uint, col:uint):Candy
+    private function remove(place:Object, pat:Pattern):void
     {
-        if(row < objs.length && col<objs[0].length)
+        moving = true;
+        _creating = true;
+
+        trace(place.row, place.col, pat.rotation, pat.name, getTimer() - Main.time);
+
+        var points:Vector.<Cell> = pat.points;
+        var len:int = points.length;
+
+        for(var i:int=0; i<len; i++)
         {
-            return objs[row][col];
+            var r:int = place.row + points[i].row;
+            var c:int = place.col + points[i].col;
+
+            pattern.setValue(0, r, c);
+            if(pattern.getValue(r,c) != 0)
+                trace("Error", r, c);
+
+            var obj:Candy = this.obj(r,c);
+            if(obj)
+            {
+                this._objList[r][c] = null;
+                obj.hide();
+            }
+            else
+            {
+                trace("Error: No obj")
+            }
+        }
+
+        setTimeout(falseMoving, 1000)
+
+    }
+
+    private function obj(row:int, col:int):Candy
+    {
+        if(row < _objList.length && col<_objList[0].length)
+        {
+            return _objList[row][col];
         }
 
         trace("ERROR get obj index");
         return null;
+    }
+
+    public function get creating():Boolean
+    {
+        return _creating;
+    }
+
+    public function click():Boolean
+    {
+        if(creating)
+            return false;
+
+        if(search(true))
+        {
+            trace("Matched")
+            return true;
+        }
+        else
+        {
+            trace("Not Match");
+            _creating = true;
+            return false
+        }
+    }
+
+    private function search(remove:Boolean):Boolean
+    {
+        var len:int = _patternList.length;
+
+        for (var i:int = 0; i < len; i++)
+        {
+            if(exist(_patternList[i], remove))
+            {
+                return true;
+            }
+        }
+
+        return false
     }
 }
 }

@@ -2,12 +2,9 @@
 کلاس پترن مشخص کننده ماتریس جدول و ماتریس پترن های تعریف شده در بازی است
 این کلاس توابعی برای دسترسی و ویرایش و مقایسه پترن ها ارائه می دهد
  */
-package tables
+package Model
 {
-import Model.Matrix;
-
 import flash.events.Event;
-
 import utilities.pattern.PatternUtils;
 
 public class Pattern extends Matrix
@@ -87,7 +84,7 @@ public class Pattern extends Matrix
     ///////////////////// Pooling ///////////////////////
     public override function dispose():void
     {
-        removePoints()
+        removePoints();
         _firstRowPoints = null;
 
         _pool[_len] = this;
